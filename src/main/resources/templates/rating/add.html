@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+	<h3>Add Hotel</h3>
+	<form action="#" th:action="@{/rating/addrating}" th:object="${rating}" method="post">
+		<label for="hotelId">Hotel</label>
+		<select th:field="*{hotelId}" id="hotelId">
+			<option th:each="hotel : ${hotels}" th:value="${hotel.id}" th:text="${hotel.name}" />
+		</select>
+		<span th:if="${#fields.hasErrors('hotel')}" th:errors="*{hotel}" />
+
+		<span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
+		<label for="rating">Rating</label>
+		<input type="number" th:field="*{rating}" id="rating" placeholder="0">
+		<span th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}" />
+		<label for="comment">Comment</label>
+		<input type="text" th:field="*{comment}" id="comment" placeholder="Comment">
+		<span th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}" />
+		<input type="submit" value="Add Rating">
+	</form>
+</body>
+</html>

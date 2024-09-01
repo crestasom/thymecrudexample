@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+	<div th:switch="${ratings}">
+		<h2 th:case="null">No ratings yet!</h2>
+		<div th:case="*">
+			<h3>Hotels</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Hotel</th>
+						<th>User</th>
+						<th>Rating</th>
+						<th>Comment</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="rating : ${ratings}">
+						<td th:text="${rating.hotel.name}"></td>
+						<td th:text="${rating.user.name}"></td>
+						<td th:text="${rating.rating}"></td>
+						<td th:text="${rating.comment}"></td>
+						<td><a th:href="@{/rating/edit/{id}(id=${rating.id})}">Edit</a></td>
+						<td><a th:href="@{/rating/delete/{id}(id=${rating.id})}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<p>
+			<a href="/rating/add">Add a new rating</a>
+		</p>
+	</div>
+</body>
+</html>
